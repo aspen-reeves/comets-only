@@ -1,0 +1,60 @@
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">CometsOnly - [name here]</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+
+  <div class="window-body">
+    <form [formGroup]="signup" (ngSubmit)="onSubmit()">
+      <!-- NAME -->
+      <div class="field-row">
+        <label for="userName">Name</label>
+        <input id="userName" type="text" formControlName="name"/>
+      </div>
+
+      <!-- AGE -->
+      <div class="field-row">
+        <label for="userAge">Age</label>
+        <input id="userAge" type="number" min="0" formControlName="age" />
+      </div>
+
+      <!-- LANGUAGE -->
+      <div class="field-row">
+        <label for="userLang">Language</label>
+        <input id="userLang" type="text" formControlName="lang" />
+      </div>
+
+      <!-- OS -->
+      <div class="field-row">
+        <label for="userOS">OS</label>
+        <input id="userOS" type="text" formControlName="os" />
+      </div>
+
+      <!-- EDITOR -->
+      <div class="field-row">
+        <label for="userEditor">Editor</label>
+        <input id="userEditor" type="text" formControlName="editor" />
+      </div>
+
+      <!-- LAST SHOWER -->
+      <div class="field-row">
+        <label for="userShower">Last Shower:</label>
+        <input id="userShower" type="date" formControlName="lastShower" />
+      </div>
+
+      <!-- CODE SNIPPET -->
+      <div class="field-row">
+        <label for="userCode">Code Snippet</label>
+        <input id="userCode" type="textarea" formControlName="code" />
+      </div>
+
+      <button type="submit">
+        Signup
+      </button>
+    </form>
+  </div>
+</div>

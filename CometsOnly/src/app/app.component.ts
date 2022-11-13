@@ -9,5 +9,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 export class AppComponent {
   title = 'CometsOnly';
 
+  profiles:number[] = [];
+
+  
 
 }
