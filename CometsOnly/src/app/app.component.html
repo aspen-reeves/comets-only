@@ -1,0 +1,13 @@
+<!-- LOGIN, SIGNUP, & MAIN MENU -->
+<div class="container">
+  <!-- SIDEBAR FOR MESSAGES & MATCHES -->
+  <!-- <app-sidebar></app-sidebar> -->
+  <router-outlet></router-outlet>
+  <!-- FINDING MATCHES -->
+  <div class="window-profiles">
+    <app-profile-window
+    *ngIf="profile != undefined"
+      [profile]="profile"
+    ></app-profile-window>
+  </div>
+</div>

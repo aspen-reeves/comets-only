@@ -1,0 +1,24 @@
+.logo-container{
+  text-align: center;
+}
+
+.logo{
+  max-width: 150px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.field-row{
+  width: 175px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button{
+  margin: 1rem 0 0;
+}

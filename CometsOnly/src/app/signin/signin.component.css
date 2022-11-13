@@ -1,0 +1,28 @@
+.body-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.introduction{
+  text-align: center;
+}
+
+.logo-container{
+  text-align: center;
+}
+
+.logo{
+  max-width: 150px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+  margin: 0.5rem 0;
+}
