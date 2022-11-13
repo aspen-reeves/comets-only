@@ -12,6 +12,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// main struct for holding profile data
 type profile struct {
 	Name string
 
@@ -27,6 +28,8 @@ type profile struct {
 	//code stippet
 	Code string
 }
+
+// JSON version of profile
 type profileJSON struct {
 	Name       string `json:"name"`
 	Age        uint8  `json:"age"`
@@ -37,12 +40,15 @@ type profileJSON struct {
 	Code       string `json:"code"`
 }
 
+// some random data for the profiles
 var profiles = []profile{
 	{Name: "Bob", Age: 20, Lang: "Go", OS: "Windows", Editor: "VS Code", LastShower: "yesterday", Code: "fmt.Println(\"Hello World\")"},
 	{Name: "Alice", Age: 21, Lang: "Python", OS: "Linux", Editor: "Vim", LastShower: "what is a shower", Code: "print(\"Hello World\")"},
 	{Name: "John", Age: 22, Lang: "C++", OS: "MacOS", Editor: "Xcode", LastShower: "last week", Code: "cout << \"Hello World\" << endl;"},
 }
 
+// save profiles to a file
+// FIXME
 func saveProfile([]profile) {
 	//save profiles to a file, cause databases are hard
 
@@ -67,6 +73,7 @@ func saveProfile([]profile) {
 
 }
 
+// load profiles from a file
 func loadProfiles() {
 	//load profiles from a file
 	//first we need to open the file
@@ -95,6 +102,7 @@ func loadProfiles() {
 
 }
 
+// converts profile to JSON format
 func cringeToJSON(temp profile) profileJSON {
 	var tempJSON profileJSON
 	tempJSON.Name = temp.Name
@@ -106,10 +114,14 @@ func cringeToJSON(temp profile) profileJSON {
 	tempJSON.Code = temp.Code
 	return tempJSON
 }
+
+// landing page
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the HomePage!")
 	fmt.Println("Endpoint Hit: homePage")
 }
+
+// returns a profile with a given id
 func returnProfile(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
@@ -124,6 +136,8 @@ func returnProfile(w http.ResponseWriter, r *http.Request) {
 // APT format
 // {"name":"","age":,"lang":"","os":"","editor":""}
 // {"name":"joe mama","age":69,"lang":"js","os":"Linux","editor":"Vim", "lastShower":"2020-10-10T10:10:10Z", "code":"console.log(\"Hello World\")"}
+
+// create a profile from a POST request
 func createProfile(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var temp profile
@@ -135,6 +149,7 @@ func createProfile(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(temp)
 }
 
+// function for handling requests
 func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 	//default route
