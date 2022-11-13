@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
-	"github.com/rs/cors"
 )
 
 // landing page
@@ -63,10 +62,25 @@ func getBitches(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// cors middleware
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS,PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type")
+
+		if r.Method == "OPTIONS" {
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 // function for handling requests
 func HandleRequests() {
-	myRouter := mux.NewRouter().StrictSlash(true)
-
+	myRouter := mux.NewRouter()
+	myRouter.Use(corsMiddleware)
 	//default route
 	myRouter.HandleFunc("/", homePage)
 	//route to get a profile
@@ -76,11 +90,6 @@ func HandleRequests() {
 	//route to get a random profile
 	myRouter.HandleFunc("/getbitches", getBitches)
 	//cors nonsense
-	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*"},
-		AllowCredentials: true,
-	})
-	handler := c.Handler(myRouter)
 
-	log.Fatal(http.ListenAndServe(":10000", handler))
+	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }
