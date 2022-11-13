@@ -1,7 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { APIService } from './shared/api.service';
 import { Profile } from './shared/profile.model';
-import { Profile2 } from './shared/profile2.model';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +13,14 @@ export class AppComponent {
 
   signedIn: boolean = false;
 
-  profiles: Profile[] = [];
+  // profiles: Profile[] = [];
+  profile: Profile;
 
   constructor(private API: APIService) {}
 
   ngOnInit(): void {
-    this.API.subject$.subscribe((data: Profile[]) => {
-      this.profiles = data;
+    this.API.subject$.subscribe((data: Profile) => {
+      this.profile = data;
     });
   }
 

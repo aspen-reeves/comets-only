@@ -19,13 +19,13 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     // CREATE SIGNUP FORM
     this.signup = new FormGroup({
-      name: new FormControl('isaac', [Validators.required]),
-      age: new FormControl(19, [Validators.required]),
-      lang: new FormControl('js', [Validators.required]),
-      os: new FormControl('windows', [Validators.required]),
-      editor: new FormControl('vs code', [Validators.required]),
+      name: new FormControl('name', [Validators.required]),
+      age: new FormControl(18, [Validators.required]),
+      lang: new FormControl('C++', [Validators.required]),
+      os: new FormControl('Windows', [Validators.required]),
+      editor: new FormControl('Visual Studio', [Validators.required]),
       lastShower: new FormControl('2022-11-12', [Validators.required]),
-      code: new FormControl('console.log("Hello World")', [
+      code: new FormControl('cout << "Hello World!"', [
         Validators.required,
       ]),
     });

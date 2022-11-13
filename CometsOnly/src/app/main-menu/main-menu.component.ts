@@ -10,14 +10,14 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class MainMenuComponent implements OnInit {
   @Output() newProfileEvent = new EventEmitter<Profile>();
-  profiles: Profile[] = [];
+  profile: Profile;
 
   constructor(private API: APIService) {}
 
   ngOnInit(): void {
     // Continuously update 
-    this.API.subject$.subscribe((data: Profile[]) => {
-      this.profiles = data;
+    this.API.subject$.subscribe((data: Profile) => {
+      this.profile = data;
     });
   }
 

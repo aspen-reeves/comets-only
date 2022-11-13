@@ -9,6 +9,10 @@
   </div>
 
   <div class="window-body">
+    <div class="logo-container">
+      <img src="../../assets/logo.png" class="logo" alt="CometsOnly Logo">
+    </div>
+
     <form [formGroup]="signup" (ngSubmit)="onSubmit(signup.value)">
       <!-- NAME -->
       <div class="field-row">
@@ -19,7 +23,7 @@
       <!-- AGE -->
       <div class="field-row">
         <label for="userAge">Age</label>
-        <input id="userAge" type="number" min="0" formControlName="age" />
+        <input id="userAge" type="number" min="18" formControlName="age" />
       </div>
 
       <!-- LANGUAGE -->

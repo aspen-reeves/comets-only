@@ -1,3 +1,26 @@
 .window{
   grid-column-start: 2;
 }
+
+.logo-container{
+  text-align: center;
+}
+
+.logo{
+  max-width: 150px;
+}
+
+.welcome{
+  text-align: center;
+}
+
+.options{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.options > button{
+  padding: 0.5rem 4rem;
+  font-size: 1rem;
+}

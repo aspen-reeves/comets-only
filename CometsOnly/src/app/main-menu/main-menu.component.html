@@ -9,7 +9,18 @@
   </div>
 
   <div class="window-body">
-    <h4>Hello CS Major!</h4>
-    <button (click)="find()">Find</button>
+    <div class="logo-container">
+      <img src="../../assets/logo.png" class="logo" alt="CometsOnly Logo">
+    </div>
+
+    <div class="welcome">
+      <h4>Hello CS Major!</h4>
+      <!-- <h4 *ngIf="profile == undefined">Hello CS Major!</h4> -->
+      <!-- <h4 *ngIf="profile != undefined">Hello {{profile.name}}!</h4> -->
+    </div>
+
+    <div class="options">
+      <button (click)="find()">Find</button>
+    </div>
   </div>
 </div>

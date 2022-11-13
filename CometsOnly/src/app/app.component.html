@@ -4,7 +4,7 @@
   <!-- FINDING MATCHES -->
   <div class="window-profiles">
     <app-profile-window
-      *ngFor="let profile of profiles"
+    *ngIf="profile != undefined"
       [profile]="profile"
     ></app-profile-window>
   </div>
