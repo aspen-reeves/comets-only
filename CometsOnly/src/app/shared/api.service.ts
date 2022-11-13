@@ -25,7 +25,7 @@ export class APIService {
       .post(`${this.aspenAPI}auth`, JSON.stringify(credentials))
       .subscribe(
         (res) => {
-          console.log(res);
+          console.debug(res);
 
           if (res != 'wrong password' && res > 0) {
             // SUCCESS
@@ -49,9 +49,18 @@ export class APIService {
       .get<Profile>('http://144.126.154.126:10000/getbitches')
       .subscribe((data: Profile) => {
         let profile = { ...data };
-        
+
         // Change Array through multicast
         this.subject$.next(profile);
       });
+  }
+
+  storeToken() {
+    sessionStorage.setItem('token', JSON.stringify(this.userId));
+  }
+
+  getToken(): number {
+    const token = sessionStorage.getItem('token') as string;
+    return JSON.parse(token);
   }
 }

@@ -9,6 +9,7 @@ import { ProfileWindowComponent } from './profile-window/profile-window.componen
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     SignupComponent,
     SigninComponent,
     MainMenuComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
