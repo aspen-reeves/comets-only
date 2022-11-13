@@ -62,4 +62,16 @@ This directory contains the API documentation for the project.
     - no response body
 
 - {host}/getbitches - call with a GET request to get a random user
-    - response body: ```{id: int, name: string, age: int, lang: string, os: string, editor: string, lastShower: string, code: string}```
+    - response body: 
+    ```
+    {
+        id: int,
+        name: string,
+        age: int,
+        lang: string,
+        os: string,
+        editor: string,
+        lastShower: string,
+        code: string
+    }
+    ```
