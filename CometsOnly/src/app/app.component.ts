@@ -6,7 +6,7 @@ import { Profile } from './shared/profile.model';
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', '../../node_modules/xp.css/dist/XP.css'],
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'CometsOnly';
