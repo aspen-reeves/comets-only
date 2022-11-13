@@ -66,6 +66,7 @@ func saveProfile([]profile) {
 	}
 
 }
+
 func loadProfiles() {
 	//load profiles from a file
 	//first we need to open the file
