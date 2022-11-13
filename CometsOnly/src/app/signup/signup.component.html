@@ -1,6 +1,6 @@
 <div class="window">
   <div class="title-bar">
-    <div class="title-bar-text">CometsOnly - [name here]</div>
+    <div class="title-bar-text">CometsOnly - Sign Up</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
       <button aria-label="Maximize"></button>
@@ -9,7 +9,7 @@
   </div>
 
   <div class="window-body">
-    <form [formGroup]="signup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="signup" (ngSubmit)="onSubmit(signup.value)">
       <!-- NAME -->
       <div class="field-row">
         <label for="userName">Name</label>
@@ -52,7 +52,7 @@
         <input id="userCode" type="textarea" formControlName="code" />
       </div>
 
-      <button type="submit">
+      <button type="submit" [disabled]="!signup.valid">
         Signup
       </button>
     </form>

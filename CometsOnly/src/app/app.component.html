@@ -1,22 +1,23 @@
-<!-- <div class="window">
-  <div class="title-bar">
-    <div class="title-bar-text">CometsOnly</div>
-    <div class="title-bar-controls">
-      <button aria-label="Minimize"></button>
-      <button aria-label="Maximize"></button>
-      <button aria-label="Close"></button>
-    </div>
-  </div>
-
-  <div class="window-body">
-    <div>
-      <h3>Hello CS Major!</h3>
-      <button (click)="profiles.push(1)">Get Bitches</button>
-    </div>
-  </div>
-</div> -->
-
 <div class="user-window">
+  <!-- STARTING WINDOW -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">CometsOnly</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="window-body">
+      <div>
+        <h3>Hello CS Major!</h3>
+        <button (click)="profiles.push(match())">Get Bitches</button>
+      </div>
+    </div>
+  </div>
+
   <app-signup></app-signup>
-  <app-profile-window *ngFor="let profile of profiles"></app-profile-window>
+  <app-profile-window *ngFor="let profile of profiles" [profile]="profile"></app-profile-window>
 </div>
