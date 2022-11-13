@@ -5,15 +5,18 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 )
 
 // main struct for holding profile data
 type profile struct {
+	Id   int
 	Name string
 
 	Age uint8
@@ -31,6 +34,7 @@ type profile struct {
 
 // JSON version of profile
 type profileJSON struct {
+	Id         int    `json:"id"`
 	Name       string `json:"name"`
 	Age        uint8  `json:"age"`
 	Lang       string `json:"lang"`
@@ -42,9 +46,10 @@ type profileJSON struct {
 
 // some random data for the profiles
 var profiles = []profile{
-	{Name: "Bob", Age: 20, Lang: "Go", OS: "Windows", Editor: "VS Code", LastShower: "yesterday", Code: "fmt.Println(\"Hello World\")"},
-	{Name: "Alice", Age: 21, Lang: "Python", OS: "Linux", Editor: "Vim", LastShower: "what is a shower", Code: "print(\"Hello World\")"},
-	{Name: "John", Age: 22, Lang: "C++", OS: "MacOS", Editor: "Xcode", LastShower: "last week", Code: "cout << \"Hello World\" << endl;"},
+	{Id: 0, Name: "", Age: 0, Lang: "", OS: "", Editor: "", LastShower: "", Code: ""},
+	{Id: 1, Name: "Bob", Age: 20, Lang: "Go", OS: "Windows", Editor: "VS Code", LastShower: "yesterday", Code: "fmt.Println(\"Hello World\")"},
+	{Id: 2, Name: "Alice", Age: 21, Lang: "Python", OS: "Linux", Editor: "Vim", LastShower: "what is a shower", Code: "print(\"Hello World\")"},
+	{Id: 3, Name: "John", Age: 22, Lang: "C++", OS: "MacOS", Editor: "Xcode", LastShower: "last week", Code: "cout << \"Hello World\" << endl;"},
 }
 
 // save profiles to a file
@@ -126,6 +131,10 @@ func returnProfile(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
 	idTemp, _ := strconv.Atoi(key)
+	if idTemp > len(profiles) {
+		fmt.Fprintf(w, "Profile not found")
+		return
+	}
 	tempJSON := cringeToJSON(profiles[idTemp])
 	fmt.Println("Endpoint Hit: returnProfile")
 	fmt.Println(tempJSON)
@@ -149,6 +158,17 @@ func createProfile(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(temp)
 }
 
+// create api call for random person
+func getBitches(w http.ResponseWriter, r *http.Request) {
+	// return a random person
+	fmt.Println("Endpoint Hit: getBitches")
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+
+	json.NewEncoder(w).Encode(profiles[r1.Intn(len(profiles))])
+
+}
+
 // function for handling requests
 func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
@@ -158,6 +178,8 @@ func handleRequests() {
 	myRouter.HandleFunc("/profile/{id}", returnProfile)
 	//route to create a profile
 	myRouter.HandleFunc("/signup", createProfile).Methods("POST")
+	//route to get a random profile
+	myRouter.HandleFunc("/getBitches", getBitches)
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }
