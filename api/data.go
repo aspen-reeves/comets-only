@@ -22,6 +22,17 @@ type accountJSON struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
+type matchJSON struct {
+	Id1      int  `json:"id1"`
+	Id2      int  `json:"id2"`
+	IsMutual bool `json:"isMutual"`
+}
+
+var matchData []matchJSON = []matchJSON{
+	{Id1: 0, Id2: 1, IsMutual: false},
+	{Id1: 1, Id2: 2, IsMutual: true},
+	{Id1: 2, Id2: 3, IsMutual: false},
+}
 
 // more dummy data
 var profileData = []profileJSON{
@@ -77,7 +88,6 @@ func loadProfiles() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	//then we need to close the file
 	err = file.Close()
 	if err != nil {

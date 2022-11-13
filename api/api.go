@@ -86,6 +86,43 @@ func userAuth(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// function for handling matches
+func gotBitches(w http.ResponseWriter, r *http.Request) {
+	// get the body of our POST request
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var token int
+	json.Unmarshal(reqBody, &token)
+	// this will have id1 and id2, and a boolean for if they matched
+	for _, v := range matchData {
+		if v.Id1 == token || v.Id2 == token {
+			if v.IsMutual {
+				fmt.Println("Endpoint Hit: theyGotBitches")
+				json.NewEncoder(w).Encode(v)
+			}
+		}
+	}
+	fmt.Println("Endpoint Hit: noBitches")
+}
+
+// handleMatch will handle the matching of two people
+func handleMatch(w http.ResponseWriter, r *http.Request) {
+	// get the body of our POST request
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	var token matchJSON
+	json.Unmarshal(reqBody, &token)
+	// this will have id1 and id2, and a boolean for if they matched, but we will ignore the boolean
+	for i := 0; i < len(matchData); i++ {
+		if (matchData[i].Id1 == token.Id1 && matchData[i].Id2 == token.Id2) || (matchData[i].Id1 == token.Id2 && matchData[i].Id2 == token.Id1) {
+			matchData[i].IsMutual = true
+			fmt.Println("Endpoint Hit: handleMatchBitches")
+			return
+		}
+	}
+	token.IsMutual = false
+	matchData = append(matchData, token)
+	fmt.Println("Endpoint Hit: handleMatchNoBitches")
+}
+
 // create api call for random person
 func getBitches(w http.ResponseWriter, r *http.Request) {
 	// return a random person
@@ -123,6 +160,8 @@ func HandleRequests() {
 	myRouter.HandleFunc("/profile/{id}", returnProfile)
 	//route to create a profile
 	myRouter.HandleFunc("/signup", createProfile).Methods("POST")
+	myRouter.HandleFunc("/checkmatches", gotBitches).Methods("POST")
+	myRouter.HandleFunc("/match", handleMatch).Methods("POST")
 	//route to get a random profile
 	myRouter.HandleFunc("/getbitches", getBitches)
 
