@@ -1,1 +1,33 @@
-<p>signin works!</p>
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">CometsOnly</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close"></button>
+    </div>
+  </div>
+
+  <div class="window-body">
+    <div>
+      <h3>Welcome!</h3>
+      <form [formGroup]="signIn" (ngSubmit)="login(signIn.value)">
+        <div *ngIf="!signedIn && submitted">
+          <p>Uh-oh, something went wrong</p>
+        </div>
+        <!-- USERNAME -->
+        <div class="field-row">
+          <label for="username">Username</label>
+          <input id="username" type="text" formControlName="username"/>
+        </div>
+        <!-- PASSWORD -->
+        <div class="field-row">
+          <label for="password">Password</label>
+          <input id="password" type="password" formControlName="password"/>
+        </div>
+
+        <button type="submit" [disabled]="!signIn.valid">Sign In</button>
+      </form>
+    </div>
+  </div>
+</div>

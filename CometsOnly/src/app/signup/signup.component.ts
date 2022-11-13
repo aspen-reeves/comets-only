@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
   constructor(private http: HttpClient, private signupPost: SignupPost) {}
 
   ngOnInit(): void {
+    // CREATE SIGNUP FORM
     this.signup = new FormGroup({
       name: new FormControl('isaac', [Validators.required]),
       age: new FormControl(19, [Validators.required]),
@@ -31,14 +32,8 @@ export class SignupComponent implements OnInit {
     console.log(this.signup);
   }
 
+  // POST REQUEST TO SIGNUP
   onSubmit(signupForm: Profile) {
-    // console.log(signupForm);
-
-    // let newProfile: Profile = { ...this.signup.value };
     this.signupPost.addProfile(signupForm);
   }
-
-  // getBitches() {
-  //   this.signupPost.getProfile();
-  // }
 }

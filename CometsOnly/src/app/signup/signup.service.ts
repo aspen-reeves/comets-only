@@ -7,6 +7,7 @@ import {
 import { Profile } from '../shared/profile.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,13 +19,15 @@ const httpOptions = {
 export class SignupPost {
   aspensAPI: string = 'http://144.126.154.126:10000/signup';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public router: Router) {}
 
   addProfile(newProfile: Profile) {
-    console.log(newProfile);
 
     this.httpClient.post(this.aspensAPI, JSON.stringify(newProfile)).subscribe((res) => {
       console.log(res);
+      if(res){
+        this.router.navigate(['menu'])
+      }
     });
   }
 

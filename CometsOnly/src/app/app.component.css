@@ -1,4 +1,10 @@
-.user-window{
+.container{
+  display: grid;
+  grid-template-columns: 37.5% 25% 37.5%;
+}
+
+.window-profiles{
+  grid-column-start: 3;
   display: grid;
   place-items: center;
 }

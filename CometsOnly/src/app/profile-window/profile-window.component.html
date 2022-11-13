@@ -1,6 +1,6 @@
 <div class="window">
   <div class="title-bar">
-    <div class="title-bar-text">CometsOnly - {{ profile.name }}</div>
+    <div class="title-bar-text">Profile - {{ profile.name }}</div>
     <div class="title-bar-controls">
       <button aria-label="Minimize"></button>
       <button aria-label="Maximize"></button>
@@ -9,14 +9,25 @@
   </div>
 
   <div class="window-body">
-    <h4>Hi! My name is: {{ profile.name }}</h4>
-    <ul>
-      <li>Age: {{ profile.age }}</li>
-      <li>Language: {{ profile.lang }}</li>
-      <li>OS: {{ profile.os }}</li>
-      <li>Editor: {{ profile.editor }}</li>
-      <li>Last Shower Taken: {{ profile.lastShower }}</li>
-      <li>Code Snippet: {{ profile.code }}</li>
-    </ul>
+    <div class="introduction">
+      <h4>Hi! My name is: {{ profile.name }}</h4>
+    </div>
+
+    <div class="body-container">
+      <div class="details">
+        <ul class="details-list">
+          <li>Age: {{ profile.age }}</li>
+          <li>Language: {{ profile.lang }}</li>
+          <li>OS: {{ profile.os }}</li>
+          <li>Editor: {{ profile.editor }}</li>
+          <li>Last Shower Taken: {{ profile.lastShower }}</li>
+          <li>Code Snippet: {{ profile.code }}</li>
+        </ul>
+      </div>
+
+      <div class="options">
+        <button>Match</button>
+      </div>
+    </div>
   </div>
 </div>
