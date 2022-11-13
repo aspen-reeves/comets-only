@@ -10,8 +10,7 @@ import (
 type profile struct {
 	Id   int
 	Name string
-
-	Age uint8
+	Age  uint8
 	//favorite programming language
 	Lang string
 	//favorite operating system
