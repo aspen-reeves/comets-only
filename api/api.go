@@ -24,15 +24,14 @@ func returnProfile(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	key := vars["id"]
 	idTemp, _ := strconv.Atoi(key)
-	if idTemp > len(profiles) {
+	if idTemp > len(profileData) {
 		fmt.Fprintf(w, "Profile not found")
 		return
 	}
-	tempJSON := cringeToJSON(profiles[idTemp])
+	//tempJSON := cringeToJSON(profiles[idTemp])
 	fmt.Println("Endpoint Hit: returnProfile")
-	fmt.Println(tempJSON)
-	fmt.Println(profiles[idTemp])
-	json.NewEncoder(w).Encode(tempJSON)
+	fmt.Println(profileData[idTemp])
+	json.NewEncoder(w).Encode(profileData[idTemp])
 }
 
 // APT format
@@ -42,11 +41,12 @@ func returnProfile(w http.ResponseWriter, r *http.Request) {
 // create a profile from a POST request
 func createProfile(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
-	var temp profile
+	var temp profileJSON
 	json.Unmarshal(reqBody, &temp)
-	profiles = append(profiles, temp)
+	temp.Id = len(profileData)
+	profileData = append(profileData, temp)
 	fmt.Println(temp)
-	saveProfile(profiles)
+	saveProfile(profileData)
 	fmt.Println("Endpoint Hit: createProfile")
 	json.NewEncoder(w).Encode(temp)
 }
@@ -58,7 +58,7 @@ func getBitches(w http.ResponseWriter, r *http.Request) {
 	s1 := rand.NewSource(time.Now().UnixNano())
 	r1 := rand.New(s1)
 
-	json.NewEncoder(w).Encode(profiles[r1.Intn(len(profiles))])
+	json.NewEncoder(w).Encode(profileData[r1.Intn(len(profileData))])
 
 }
 
@@ -89,7 +89,6 @@ func HandleRequests() {
 	myRouter.HandleFunc("/signup", createProfile).Methods("POST")
 	//route to get a random profile
 	myRouter.HandleFunc("/getbitches", getBitches)
-	//cors nonsense
 
 	log.Fatal(http.ListenAndServe(":10000", myRouter))
 }

@@ -1,5 +1,0 @@
-Bob,20,Go,Windows,VS Code,yesterday,fmt.Println("Hello World") 
-Alice,21,Python,Linux,Vim,what is a shower,print("Hello World") 
-John,22,C++,MacOS,Xcode,last week,cout << "Hello World" << endl; 
-joe mama,69,js,Linux,Vim,never,console.log("Hello World") 
-joe mama,69,js,Linux,nano,yesterday,console.log("Hello World") 
