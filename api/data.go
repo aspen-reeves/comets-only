@@ -17,6 +17,11 @@ type profileJSON struct {
 	LastShower string `json:"lastShower"`
 	Code       string `json:"code"`
 }
+type accountJSON struct {
+	Id       int    `json:"id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
 
 // more dummy data
 var profileData = []profileJSON{
@@ -24,6 +29,12 @@ var profileData = []profileJSON{
 	{Id: 1, Name: "Bob", Age: 20, Lang: "Go", OS: "Windows", Editor: "VS Code", LastShower: "yesterday", Code: "fmt.Println(\"Hello World\")"},
 	{Id: 2, Name: "Alice", Age: 21, Lang: "Python", OS: "Linux", Editor: "Vim", LastShower: "what is a shower", Code: "print(\"Hello World\")"},
 	{Id: 3, Name: "John", Age: 22, Lang: "C++", OS: "MacOS", Editor: "Xcode", LastShower: "last week", Code: "cout << \"Hello World\" << endl;"},
+}
+var accountData = []accountJSON{
+	{Id: 0, Username: "", Password: ""},
+	{Id: 1, Username: "Bob", Password: "123"},
+	{Id: 2, Username: "Alice", Password: "123"},
+	{Id: 3, Username: "John", Password: "123"},
 }
 
 // save profiles to a file in JSON format

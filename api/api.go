@@ -40,15 +40,50 @@ func returnProfile(w http.ResponseWriter, r *http.Request) {
 
 // create a profile from a POST request
 func createProfile(w http.ResponseWriter, r *http.Request) {
+	// get the body of our POST request
 	reqBody, _ := ioutil.ReadAll(r.Body)
+	// unmarshal this into a new Profile struct
 	var temp profileJSON
 	json.Unmarshal(reqBody, &temp)
+	// append this to our profiles array.
 	temp.Id = len(profileData)
 	profileData = append(profileData, temp)
 	fmt.Println(temp)
 	saveProfile(profileData)
+	// return the newly created profile
 	fmt.Println("Endpoint Hit: createProfile")
 	json.NewEncoder(w).Encode(temp)
+}
+
+// function for login and signup
+func userAuth(w http.ResponseWriter, r *http.Request) {
+	// get the body of our POST request
+	reqBody, _ := ioutil.ReadAll(r.Body)
+	// unmarshal this into a new Profile struct
+	var temp accountJSON
+	json.Unmarshal(reqBody, &temp)
+
+	// check if the user exists
+	for _, v := range accountData {
+		if v.Username == temp.Username {
+			if v.Password == temp.Password {
+				fmt.Println("Endpoint Hit: userAuth")
+				json.NewEncoder(w).Encode(v.Id)
+				return
+			} else {
+				fmt.Println("Endpoint Hit: userAuth")
+				json.NewEncoder(w).Encode("wrong password")
+				return
+			}
+		}
+	}
+	// if the user does not exist, create a new account
+	temp.Id = len(accountData)
+	accountData = append(accountData, temp)
+	fmt.Println("Endpoint Hit: newUserAuth")
+	json.NewEncoder(w).Encode(temp.Id)
+	json.NewEncoder(w).Encode(false)
+
 }
 
 // create api call for random person
@@ -83,6 +118,7 @@ func HandleRequests() {
 	myRouter.Use(corsMiddleware)
 	//default route
 	myRouter.HandleFunc("/", homePage)
+	myRouter.HandleFunc("/auth", userAuth).Methods("POST")
 	//route to get a profile
 	myRouter.HandleFunc("/profile/{id}", returnProfile)
 	//route to create a profile
