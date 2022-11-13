@@ -11,12 +11,12 @@ This directory contains the API documentation for the project.
     - if there is no user, it creates a new user and returns a token, `{"token": int}`, as well as a `{false}` boolean
 
 - {host}/profile/{token} - call with a GET request to get a user's profile at the token
-    - response body: `{id: int, name: string, age: int, lang: string, os: string, editor: string, lastShower: string, code: string}`
+    - response body: ```{id: int, name: string, age: int, lang: string, os: string, editor: string, lastShower: string, code: string}```
     - if there is no user, response body is `"Profile not found"`
 
 -{host}/signup - call with a POST request to create a new user
-    - request body: `{"name": string, "age": int, "lang": string, "os": string, "editor": string, "lastShower": string, "code": string}`
-    - response body: `{"id": int,"name": string, "age": int, "lang": string, "os": string, "editor": string, "lastShower": string, "code": string}`
+    - request body: ```{"name": string, "age": int, "lang": string, "os": string, "editor": string, "lastShower": string, "code": string}```
+    - response body: ```{"id": int,"name": string, "age": int, "lang": string, "os": string, "editor": string, "lastShower": string, "code": string}```
 
 -{host}/checkmatches - call with a POST request to check for matches
     - request body: `{int}`
@@ -27,4 +27,4 @@ This directory contains the API documentation for the project.
     - no response body
 
 -{host}/getbitches - call with a GET request to get a random user
-    - response body: `{id: int, name: string, age: int, lang: string, os: string, editor: string, lastShower: string, code: string}`
+    - response body: ```{id: int, name: string, age: int, lang: string, os: string, editor: string, lastShower: string, code: string}```
