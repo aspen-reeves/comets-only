@@ -18,6 +18,6 @@
     </div>
   </div>
 
-  <app-signup></app-signup>
+  <app-signup *ngIf="!signedIn"></app-signup>
   <app-profile-window *ngFor="let profile of profiles" [profile]="profile"></app-profile-window>
 </div>

@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { APIService } from './shared/api.service';
 import { Profile } from './shared/profile.model';
+import { Profile2 } from './shared/profile2.model';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ import { Profile } from './shared/profile.model';
 export class AppComponent {
   title = 'CometsOnly';
 
+  signedIn: boolean = true;
+
   profiles: Profile[] = [];
 
   constructor(private API: APIService) {}
@@ -18,6 +21,14 @@ export class AppComponent {
   // GETS A MATCH PROFILE
   match(): Profile {
     this.API.getProfile();
-    return this.API.profile;
+    return {
+      name: this.API.profile.Name,
+      age: this.API.profile.Age,
+      lang: this.API.profile.Lang,
+      os: this.API.profile.OS,
+      editor: this.API.profile.Editor,
+      lastShower: this.API.profile.LastShower,
+      code: this.API.profile.Code,
+    };
   }
 }

@@ -1,6 +1,6 @@
 export class Profile{
   name: string;
-  age: Int8Array;
+  age: number;
   lang: string;
   os: string;
   editor: string;

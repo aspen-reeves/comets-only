@@ -6,12 +6,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ProfileWindowComponent } from './profile-window/profile-window.component';
 import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileWindowComponent,
     SignupComponent,
+    SigninComponent,
+    MainMenuComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
